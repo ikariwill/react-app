@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import drop from 'lodash/drop';
 import reverse from 'lodash/reverse';
+import InputAutor from './component/InputAutor'
 import './App.css';
 import './css/bulma.min.css';
 
@@ -110,33 +111,9 @@ class App extends Component {
             <div className="columns is-mobile">
               <div className="column is-three-fifths is-offset-one-fifth">
                 <form onSubmit={this.enviar} method="post">
-                  <div className="field">
-                    <label className="label">Nome</label>
-                    <div className="control">
-                      <input className="input" type="text" placeholder="Nome"
-                        value={this.state.nome}
-                        onChange={this.setNome}
-                        />
-                    </div>
-                  </div>
-                  <div className="field">
-                    <label className="label">Email</label>
-                    <div className="control">
-                      <input className="input" type="email" placeholder="Email"
-                        value={this.state.email}
-                        onChange={this.setEmail}/>
-                    </div>
-                  </div>
-                  <div className="field">
-                    <label className="label">Senha</label>
-                    <div className="control">
-                      <input className="input" type="password" placeholder="Senha"
-                        value={this.state.senha}
-                        onChange={this.setSenha}/>
-                    </div>
-                  </div>
-
-
+                  <InputAutor label="Nome" placeholder="Nome" id="nome" name="nome" type="text" value={this.state.nome} onChange={this.setNome}></InputAutor>
+                  <InputAutor label="Email" placeholder="email@example.com" id="email" name="email" type="email" value={this.state.email} onChange={this.setEmail}></InputAutor>
+                  <InputAutor label="Senha" placeholder="******" id="senha" name="senha" type="password" value={this.state.senha} onChange={this.setSenha}></InputAutor>
                   <div className="field is-grouped">
                     <div className="control">
                       <button className="button is-link">Cadastrar</button>
