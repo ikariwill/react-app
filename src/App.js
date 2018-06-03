@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
-import dropRight from 'lodash/dropRight';
+import drop from 'lodash/drop';
+import reverse from 'lodash/reverse';
 import './App.css';
 import './css/bulma.min.css';
 
 class App extends Component {
   constructor() {
     super();
-    this.state = {lista: []};
+    this.state = {lista: [], nome: '', email: '', senha: ''};
+    this.enviar = this.enviar.bind(this);
+    this.setNome = this.setNome.bind(this);
+    this.setEmail = this.setEmail.bind(this);
+    this.setSenha = this.setSenha.bind(this);
   }
 
   componentDidMount(){
@@ -14,11 +19,11 @@ class App extends Component {
     fetch(url)
     .then(res => res.json())
     .then(data => {
-      let primeiros10 = dropRight(data, data.length - 10);
-      this.setState({lista: primeiros10});
+      let ultimos10 = drop(data, data.length - 10);
+      this.setState({lista: reverse(ultimos10)});
     })
     .catch(err => {
-
+      console.log(err);
     });
   }
 
@@ -31,13 +36,36 @@ class App extends Component {
         'Accept': 'application/json, text/plain, */*',
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({"nome": "", "email": "", "senha": ""})
+      body: JSON.stringify(
+        {
+          "nome": this.state.nome,
+          "email": this.state.email,
+          "senha": this.state.senha
+        }
+      )
     })
-    .then(res=>res.json())
-    .then(res => console.log(res))
-    .catch(err => console.log("erro", err));
+    .then(res => res.json())
+    .then(data => {
+      let ultimos10 = drop(data, data.length - 10);
+      this.setState({lista: reverse(ultimos10)});
+    })
+    .catch(err => {
+      console.log(err);
+    });
 
     console.log("enviando");
+  }
+
+  setNome(event){
+    this.setState({nome:event.target.value})
+  }
+
+  setEmail(event){
+    this.setState({email:event.target.value})
+  }
+
+  setSenha(event){
+    this.setState({senha:event.target.value})
   }
 
   render() {
@@ -85,19 +113,26 @@ class App extends Component {
                   <div className="field">
                     <label className="label">Nome</label>
                     <div className="control">
-                      <input className="input" type="text" placeholder="Nome"/>
+                      <input className="input" type="text" placeholder="Nome"
+                        value={this.state.nome}
+                        onChange={this.setNome}
+                        />
                     </div>
                   </div>
                   <div className="field">
                     <label className="label">Email</label>
                     <div className="control">
-                      <input className="input" type="email" placeholder="Email"/>
+                      <input className="input" type="email" placeholder="Email"
+                        value={this.state.email}
+                        onChange={this.setEmail}/>
                     </div>
                   </div>
                   <div className="field">
                     <label className="label">Senha</label>
                     <div className="control">
-                      <input className="input" type="password" placeholder="Senha"/>
+                      <input className="input" type="password" placeholder="Senha"
+                        value={this.state.senha}
+                        onChange={this.setSenha}/>
                     </div>
                   </div>
 
