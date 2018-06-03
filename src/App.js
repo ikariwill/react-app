@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import dropRight from 'lodash/dropRight';
+import './App.css';
 import './css/bulma.min.css';
 
 class App extends Component {
@@ -72,7 +73,7 @@ class App extends Component {
           </nav>
         </div>
 
-        <div className="hero-body">
+        <div className="content-hero">
           <div className="container has-text-centered">
             <p className="title">
               Cadastro de Autor
