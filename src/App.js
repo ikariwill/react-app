@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import drop from 'lodash/drop';
 import reverse from 'lodash/reverse';
-import InputAutor from './component/InputAutor'
+import InputAutor from './component/InputAutor';
+import PostButton from './component/PostButton';
 import './App.css';
 import './css/bulma.min.css';
 
@@ -114,11 +115,7 @@ class App extends Component {
                   <InputAutor label="Nome" placeholder="Nome" id="nome" name="nome" type="text" value={this.state.nome} onChange={this.setNome}></InputAutor>
                   <InputAutor label="Email" placeholder="email@example.com" id="email" name="email" type="email" value={this.state.email} onChange={this.setEmail}></InputAutor>
                   <InputAutor label="Senha" placeholder="******" id="senha" name="senha" type="password" value={this.state.senha} onChange={this.setSenha}></InputAutor>
-                  <div className="field is-grouped">
-                    <div className="control">
-                      <button className="button is-link">Cadastrar</button>
-                    </div>
-                  </div>
+                  <PostButton></PostButton>
                 </form>
               </div>
             </div>
