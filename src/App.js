@@ -113,7 +113,7 @@ class App extends Component {
 
             <div className="columns is-mobile">
               <div className="column is-three-fifths is-offset-one-fifth">
-                <table className="table">
+                <table className="table table-full">
                   <thead>
                     <tr>
                       <th>Nome</th>
